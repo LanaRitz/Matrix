@@ -9,9 +9,7 @@ void PrintMatrix();
 void Solution(int row, int col);
 
 int rows, cols, i, j;
-
 char CONTINUE;
-
 double constant[10][10];
 
 
@@ -30,10 +28,12 @@ int main()
     PrintMatrix();
     cout << endl;
 
+    cout << "|--------------------------------SOLVE...-----------------------|" << endl;
     Solution(0, 0);
 
     cout << endl << "Type 'Y' to restart, otherwise exit." << endl;
     cin >> CONTINUE;
+
     if(CONTINUE == 'Y'  || CONTINUE == 'y')
     {
         goto start;
@@ -42,7 +42,6 @@ int main()
     {
         return 0;
     }
-
 }
 
 void Header()
@@ -58,8 +57,6 @@ void Header()
 void DataInput()
 {
     cout << "Enter the constants." << endl;
-    cout << endl;
-    cout << endl;
 
     for (i = 0; i < rows; ++i)
     {
@@ -68,9 +65,8 @@ void DataInput()
             cin >> constant[i][j];
         }
     }
-
-
 }
+
 void PrintMatrix()
 {
     for (i = 0; i < rows; ++i)
@@ -88,7 +84,7 @@ void PrintMatrix()
             }
             else
             {
-                cout << constant[i][j] << "\t";
+                cout << "\t" << constant[i][j] << "\t";
             }
         }
     }
@@ -99,6 +95,7 @@ void Solution(int row, int col)
 {
     if (row == rows)  // Все строки обработаны
     {
+        cout << "|--------------------------------RESULT--------------------------|" << endl;
         PrintMatrix();
         cout << endl << endl;
 
@@ -106,9 +103,11 @@ void Solution(int row, int col)
         double y = constant[1][cols - 1];
         double z = constant[2][cols - 1];
 
-        cout << "x = " << x << endl;
-        cout << "y = " << y << endl;
-        cout << "z = " << z << endl;
+        cout << "\t" << "x = " << x << "\t";
+        cout << "\t" << "y = " << y << "\t";
+        cout << "\t" << "z = " << z << endl;
+
+        cout << "|----------------------------------------------------------------|" << endl;
 
         return;
     }
@@ -135,7 +134,7 @@ void Solution(int row, int col)
 
     PrintMatrix();
     cout << endl << endl;
-    
+
     // Рекурсивно обрабатываем следующую строку и столбец
     Solution(row + 1, col + 1);
 }
